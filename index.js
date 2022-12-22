@@ -25,6 +25,8 @@ module.exports.create = async (template, context, options) => {
     throw 'You must provide path to save file.'
   }
 
+  options.printBackground = true
+
   try {
     // edge template to html string
     const html = await edge.render(template, context)
