@@ -1,6 +1,6 @@
 {
   "name": "dynamic-html-to-pdf",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Create dynamic PDF from Edge.js template",
   "main": "index.js",
   "scripts": {},
