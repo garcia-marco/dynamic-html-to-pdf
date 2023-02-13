@@ -2,7 +2,7 @@
  * dynamic-html-to-pdf
  *
  *
- * Copyright (c) 2022 Marco Garcia
+ * Copyright (c) 2023 Marco Garcia
  * Licensed under the MIT license.
  */
 
@@ -11,8 +11,8 @@
  * @param {template, context, options}
  */
 
-const edge = require('edge.js').default
-const puppeteer = require('puppeteer')
+const { default: edge } = require('edge.js')
+const { chromium } = require('playwright')
 
 module.exports.create = async (template, context, options) => {
   if (!template) {
@@ -28,13 +28,13 @@ module.exports.create = async (template, context, options) => {
   options.printBackground = true
 
   try {
-    // edge template to html string
+    // Edge template to html string
     const html = await edge.render(template, context)
 
-    // html string to pdf
-    const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
+    // Html string to pdf
+    const browser = await chromium.launch()
     const page = await browser.newPage()
-    await page.setContent(html, { waitUntil: 'networkidle0' })
+    await page.setContent(html)
     await page.pdf(options)
     await browser.close()
 

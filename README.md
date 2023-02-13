@@ -5,7 +5,7 @@ dynamic-html-to-pdf is a small package used to create pdf from edge template.
 
 Edge transform edge template into html string.
 
-Puppeteer transform html string into pdf file.
+Playwright transform html string into pdf file.
 
 ### Installation
 
@@ -23,7 +23,7 @@ const options = { path: './output.pdf' }
 
 pdf.create(template, context, options)
 ```
-Look https://github.com/puppeteer/puppeteer/blob/v13.3.1/docs/api.md#pagepdfoptions for different options.
+Look https://playwright.dev/docs/api/class-page#page-pdf for different options.
 
 
 ### Create template.edge
