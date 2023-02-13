@@ -17,6 +17,6 @@
   },
   "dependencies": {
     "edge.js": "^5.5.0",
-    "playwright": "^1.30.0"
+    "playwright-chromium": "^1.30.0"
   }
 }
