@@ -21,9 +21,6 @@ module.exports.create = async (template, context, options) => {
   if (!context) {
     throw 'You must provide context.'
   }
-  if (!options.path) {
-    throw 'You must provide path to save file.'
-  }
 
   options.printBackground = true
 
@@ -37,7 +34,7 @@ module.exports.create = async (template, context, options) => {
     try {
       const page = await browser.newPage()
       await page.setContent(html, { waitUntil: 'networkidle' })
-      await page.pdf(options)
+      return page.pdf(options)
     } catch(error) {
       throw error
     } finally {
