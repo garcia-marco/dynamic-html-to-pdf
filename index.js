@@ -31,15 +31,19 @@ module.exports.create = async (template, context, options) => {
     // Html string to pdf
     const browser = await chromium.launch({ chromiumSandbox: false })
 
+    let pdf = null
+
     try {
       const page = await browser.newPage()
       await page.setContent(html, { waitUntil: 'networkidle' })
-      return page.pdf(options)
+      pdf = await page.pdf(options)
     } catch(error) {
       throw error
     } finally {
       await browser.close()
     }
+
+    return pdf
 
   } catch (error) {
     throw error
