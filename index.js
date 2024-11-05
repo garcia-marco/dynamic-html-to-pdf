@@ -2,7 +2,7 @@
  * dynamic-html-to-pdf
  *
  *
- * Copyright (c) 2023 Marco Garcia
+ * Copyright (c) 2024 Marco Garcia
  * Licensed under the MIT license.
  */
 
@@ -14,7 +14,7 @@
 const { default: edge } = require('edge.js')
 const { chromium } = require('playwright-chromium')
 
-module.exports.create = async (template, context, options) => {
+module.exports.create = async (template, context, options, globals) => {
   if (!template) {
     throw 'You must provide template.'
   }
@@ -25,6 +25,13 @@ module.exports.create = async (template, context, options) => {
   options.printBackground = true
 
   try {
+    // Add global variables
+    if (globals) {
+      for (const global in globals) {
+        edge.global(global, globals[global])
+      }
+    }
+
     // Edge template to html string
     const html = await edge.render(template, context)
 

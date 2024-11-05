@@ -20,8 +20,9 @@ const pdf = require('dynamic-html-to-pdf')
 const template = '/absolute/path/to/file/template.edge'
 const context = { users: [{ name: 'John Doe' }, { name: 'Jane Doe' }] }
 const options = { path: './output.pdf' }
+const globals = { toLowerCase: (string) => string.toLowerCase() }
 
-pdf.create(template, context, options)
+pdf.create(template, context, options, globals)
 ```
 Look https://playwright.dev/docs/api/class-page#page-pdf for different options.
 
@@ -43,7 +44,7 @@ Look https://playwright.dev/docs/api/class-page#page-pdf for different options.
 <body>
   @each(user in users)
     <div class="page">
-      {{user.name}}
+      {{ toLowerCase(user.name) }}
     </div>
   @endeach
 </body>
