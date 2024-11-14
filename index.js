@@ -14,7 +14,7 @@
 const { default: edge } = require('edge.js')
 const { chromium } = require('playwright-chromium')
 
-module.exports.create = async (template, context, options, globals) => {
+module.exports.create = async (template, context, options, defaultDisk, globals) => {
   if (!template) {
     throw 'You must provide template.'
   }
@@ -25,6 +25,11 @@ module.exports.create = async (template, context, options, globals) => {
   options.printBackground = true
 
   try {
+    // Register the views directory as the default disk for finding templates
+    if (defaultDisk) {
+      edge.mount(defaultDisk)
+    }
+
     // Add global variables
     if (globals) {
       for (const global in globals) {

@@ -18,11 +18,20 @@ npm install dynamic-html-to-pdf --save
 const pdf = require('dynamic-html-to-pdf')
 
 const template = '/absolute/path/to/file/template.edge'
+
+// Context that can be used inside the views
 const context = { users: [{ name: 'John Doe' }, { name: 'Jane Doe' }] }
+
+// Playwright options (https://playwright.dev/docs/api/class-page#page-pdf)
 const options = { path: './output.pdf' }
+
+// Folder that contain views (https://edgejs.dev/docs/getting_started#mounting-disks)
+const defaultDisk = '/absolute/path/to/file/'
+
+// Function that can be used inside the views (https://edgejs.dev/docs/templates_state#globals)
 const globals = { toLowerCase: (string) => string.toLowerCase() }
 
-pdf.create(template, context, options, globals)
+pdf.create(template, context, options, defaultDisk, globals)
 ```
 Look https://playwright.dev/docs/api/class-page#page-pdf for different options.
 
@@ -51,4 +60,4 @@ Look https://playwright.dev/docs/api/class-page#page-pdf for different options.
 
 </html>
 ```
-Look https://docs.adonisjs.com/guides/views/introduction for edge syntax
+Look https://edgejs.dev/docs/introduction for edge syntax
