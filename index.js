@@ -43,10 +43,13 @@ module.exports.create = async (template, context, options, defaultDisk, globals)
     // Html string to pdf
     const browser = await chromium.launch({ chromiumSandbox: false })
 
+    // Incognito mode, do not generate persistent context
+    const browserContext = await browser.newContext()
+
     let pdf = null
 
     try {
-      const page = await browser.newPage()
+      const page = await browserContext.newPage()
       await page.setContent(html, { waitUntil: 'networkidle' })
       pdf = await page.pdf(options)
     } catch(error) {
