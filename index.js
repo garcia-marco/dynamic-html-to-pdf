@@ -55,6 +55,7 @@ module.exports.create = async (template, context, options, defaultDisk, globals)
     } catch(error) {
       throw error
     } finally {
+      await browserContext.close()
       await browser.close()
     }
 
